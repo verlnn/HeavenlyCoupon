@@ -16,6 +16,27 @@
 - 초기 테스트 기준 **총 쿠폰 수량: 10,000,000(천만)**
 - API Gateway + Load Balancer 환경에서 수평 확장 전제
 
+---
+
+## 부하 테스트 (k6)
+
+외부에서 실제 HTTP 트래픽을 생성해 `/api/v1/coupons/issue`를 호출합니다.  
+초당 60~70만 QPS는 단일 장비로 달성이 어려우므로, 여러 로드 제너레이터/분산 실행을 권장합니다.
+
+준비:
+- k6 설치
+- 서버 기동 후 호출할 베이스 URL 확인
+
+실행 예시:
+```bash
+TARGET_RPS=600000 DURATION=60s BASE_URL=http://localhost:18024 k6 run loadtest/traffic.js
+```
+
+환경 변수:
+- `TARGET_RPS`: 목표 QPS (초당 요청 수)
+- `DURATION`: 유지 시간 (예: `30s`, `2m`)
+- `BASE_URL`: 대상 서버 URL
+
 ### 1.2 비즈니스 제약 조건
 
 - **사용자당 쿠폰 발행은 반드시 1회**
