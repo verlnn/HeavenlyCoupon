@@ -2,7 +2,7 @@ import http from 'k6/http';
 import { sleep } from 'k6';
 
 const TARGET_RPS = Number(__ENV.TARGET_RPS || '100000');
-const DURATION = __ENV.DURATION || '30s';
+const DURATION = __ENV.DURATION || '10s';
 const BASE_URL = __ENV.BASE_URL || 'http://localhost:18024';
 
 const ISSUER_PATH = '/api/v1/coupons/issue';

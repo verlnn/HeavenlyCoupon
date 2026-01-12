@@ -29,7 +29,7 @@
 
 실행 예시:
 ```bash
-TARGET_RPS=600000 DURATION=60s BASE_URL=http://localhost:18024 k6 run loadtest/traffic.js
+TARGET_RPS=600000 DURATION=10s BASE_URL=http://localhost:18024 k6 run loadtest/traffic.js
 ```
 
 환경 변수:

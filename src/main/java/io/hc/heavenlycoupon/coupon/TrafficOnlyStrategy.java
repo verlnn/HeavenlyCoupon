@@ -1,9 +1,10 @@
 package io.hc.heavenlycoupon.coupon;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-
 import java.util.concurrent.atomic.LongAdder;
 
+@Slf4j
 @Component
 public class TrafficOnlyStrategy implements CouponRequestProcessor {
 
@@ -12,6 +13,7 @@ public class TrafficOnlyStrategy implements CouponRequestProcessor {
     @Override
     public CouponRequestResult process(CouponRequest request) {
         requestCounter.increment();
+        log.info("====== {} ======", getTotalRequests());
         return CouponRequestResult.accepted();
     }
 
